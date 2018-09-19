@@ -13,16 +13,22 @@ use Illuminate\Http\Request;
 |
 */
 
+// /api/auth...
 Route::group(['prefix' => 'auth'], function ($router) {
     Route::post('login', 'AuthController@login');
     Route::post('register', 'Auth\RegisterController@register');
 
     Route::post('password/email', 'UserController@forgotPassword');
     Route::post('password/reset', 'UserController@changePassword');
+
+    Route::post('contact-us', 'UserController@contactUsForm');
 });
 
+// /api/...
 Route::group(['middleware' => 'jwt.auth'], function ($router) {
-    Route::post('password', 'UserController@changePasswordUser');
+    Route::post('user/password', 'UserController@changePasswordUser');
+
+    Route::post('user/update', 'UserController@updateUser');
 
     Route::get('customers', 'CustomersController@all');
     Route::get('customers/{id}', 'CustomersController@get');

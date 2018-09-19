@@ -36,9 +36,9 @@
             authenticate() {
                 this.form.email = this.currentUser.email;
 
-                axios.post('/api/password', this.$data.form)
+                axios.post('/api/user/password', this.$data.form)
                     .then(response =>{
-                        this.router.push({path: '/'})
+                        this.$router.push('/user-profile');
                     })
                     .catch(err=>{
                         console.log(err);

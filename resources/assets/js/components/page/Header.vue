@@ -19,14 +19,9 @@
                         <li>
                             <router-link to="/customers" class="nav-link">Customers</router-link>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
-                                {{ currentUser.name }} <span class="caret"></span>
-                            </a>
 
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a href="#!" @click.prevent="logout" class="dropdown-item">Logout</a>
-                            </div>
+                        <li>
+                            <router-link to="/user-profile" class="nav-link">{{currentUser.name}}</router-link>
                         </li>
                     </template>
                 </ul>
@@ -38,12 +33,6 @@
 <script>
     export default {
         name: 'app-header',
-        methods: {
-            logout() {
-                this.$store.commit('logout');
-                this.$router.push('/login');
-            }
-        },
         computed: {
             currentUser() {
                 return this.$store.getters.currentUser

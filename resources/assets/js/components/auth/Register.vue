@@ -1,7 +1,7 @@
 <template>
    <div class="row justify-content-center">
       <div class="col-md-8">
-         <form class="text-center border border-light p-5">
+         <form class="text-center border border-light p-5" @submit.prevent="register">
 
             <p class="h4 mb-4">Register</p>
 
@@ -13,7 +13,7 @@
 
             <div class="form-row mb-4">
                <div class="col">
-                  <input type="email" v-model="form.email" class="form-control mb-4" placeholder="E-mail">
+                  <input type="email" v-model="form.email" class="form-control" placeholder="E-mail">
                </div>
             </div>
 
@@ -26,6 +26,7 @@
             <div class="form-row mb-4">
                <div class="col">
                   <select name="city" v-model="form.idCity" class="form-control">
+                     <option value="0" disabled selected>Select your city</option>
                      <option value="1">UMF Iasi</option>
                   </select>
                </div>
@@ -33,7 +34,8 @@
 
             <div class="form-row mb-4">
                <div class="col">
-                  <select name="college" v-model="form.idCollege" class="form-control">
+                  <select name="college" v-model="form.idCollege" class="form-control" >
+                     <option value="0" disabled selected>Select your college</option>
                      <option value="1">Iasi</option>
                   </select>
                </div>
@@ -72,8 +74,8 @@
                     name: 'Iliuta',
                     email: 'iliuta@test.com',
                     phone: '0715929003',
-                    idCity: 1,
-                    idCollege: 1,
+                    idCity: 0,
+                    idCollege: 0,
                     password: '123456',
                     password_confirmation: '123456',
                 }
