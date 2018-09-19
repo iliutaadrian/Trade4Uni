@@ -45,6 +45,10 @@ export default {
         rememberMe(state, payload){
             localStorage.setItem("user", JSON.stringify(state.currentUser));
         },
+        updateUser(state, payload){
+            state.currentUser = payload;
+            localStorage.setItem("user", JSON.stringify(state.currentUser));
+        },
         logout(state) {
             localStorage.removeItem("user");
             state.isLoggedIn = false;
@@ -63,6 +67,6 @@ export default {
             .then((response) => {
                 context.commit('updateCustomers', response.data.customers);
             })
-        }
+        },
     }
 };

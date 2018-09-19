@@ -64,6 +64,7 @@
                 axios.post('/api/user/update', this.currentUser)
                     .then(res=>{
                         this.response = res.data.data;
+                        this.$store.commit('updateUser', this.currentUser);
                     })
             }
         },
