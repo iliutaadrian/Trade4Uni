@@ -4,6 +4,8 @@
             <div class="col-md-6">
                 <p class="h4 mb-4">Profile: {{ currentUser.name }}</p>
 
+                <user-avatar></user-avatar>
+
                 <p class="h6 mb-4">{{ response }}</p>
 
                 <div class="form-row mb-4">
@@ -36,7 +38,9 @@
                     </div>
                 </div>
 
-                <button @click="update" class="btn btn-info">Update Info</button>
+                <button class="btn btn-info" type="submit" :disabled="loading == 1" @click="update">
+                    <i class="fa fa-spinner fa-spin" style="font-size:18px" v-if="loading"></i> Update Info
+                </button>
 
                 <button @click="logout" class="btn btn-info">Logout</button>
 
@@ -48,10 +52,13 @@
 </template>
 
 <script>
+    import UserAvatar from '../../components/user/UserAvatar.vue'
+
     export default {
         data(){
             return {
-                response: ''
+                response: '',
+                loading: 0
             }
         },
         methods: {
@@ -60,10 +67,15 @@
                 this.$router.push('/login');
             },
             update(){
+                this.loading=1;
                 axios.post('/api/user/update', this.currentUser)
                     .then(res=>{
+                        this.loading=0;
                         this.response = res.data.data;
                         this.$store.commit('updateUser', this.currentUser);
+                    })
+                    .catch(err=>{
+                        this.loading=0;
                     })
             }
         },
@@ -71,6 +83,9 @@
             currentUser() {
                 return this.$store.getters.currentUser
             }
+        },
+        components:{
+            UserAvatar
         }
     }
 </script>

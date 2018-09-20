@@ -21,6 +21,10 @@
                         </li>
 
                         <li>
+                            <img :src="currentUser.avatar" style="width: 40px; border-radius: 50%">
+                        </li>
+
+                        <li>
                             <router-link to="/user-profile" class="nav-link">{{currentUser.name}}</router-link>
                         </li>
                     </template>
