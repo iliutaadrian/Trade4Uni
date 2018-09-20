@@ -7,29 +7,42 @@
 
                 <input type="email" v-model="form.email" class="form-control mb-4" placeholder="Email">
 
-                <button class="btn btn-info btn-block my-4" type="submit">Send Email</button>
+                <button-load :text="'Send mail'" :loading="loading"></button-load>
+
             </form>
         </div>
     </div>
 </template>
 
 <script>
+    import ButtonLoad from '../utility/ButtonLoad.vue';
+
     export default {
         name: "login",
         data() {
             return {
                 form: {
                     email: 'iliuta@test.com',
-                }
+                },
+                loading: 0
             };
         },
         methods: {
             authenticate() {
+                this.loading=1;
                 axios.post('/api/auth/password/email', this.$data.form)
                     .then(res=>{
+                        this.loading=0;
                         console.log(res);
                     })
+                    .catch(err=>{
+                        this.loading=0;
+                        console.log(err);
+                    })
             }
+        },
+        components:{
+            ButtonLoad
         }
     }
 </script>

@@ -54,7 +54,7 @@
                </div>
             </div>
 
-            <button class="btn btn-info btn-block my-3" type="submit">Register</button>
+            <button-load :text="'Register'" :loading="loading"></button-load>
 
 
             <p>By clicking
@@ -67,6 +67,8 @@
 </template>
 
 <script>
+    import ButtonLoad from '../utility/ButtonLoad.vue';
+
     export default {
         data() {
             return{
@@ -78,19 +80,26 @@
                     idCollege: 0,
                     password: '123456',
                     password_confirmation: '123456',
-                }
+                },
+                loading: 0
             }
         },
         methods: {
             register () {
-               axios.post('/api/auth/register', this.$data.form)
-                   .then(response =>{
-                       console.log(response);
-                   })
-                   .catch(err=>{
-                       console.log(err);
-                   })
+                this.loading = 1;
+                axios.post('/api/auth/register', this.$data.form)
+                    .then(response =>{
+                        this.loading = 0;
+                        console.log(response);
+                    })
+                    .catch(err=>{
+                        this.loading = 0;
+                        console.log(err);
+                    })
             }
+        },
+        components:{
+            ButtonLoad
         }
     }
 </script>

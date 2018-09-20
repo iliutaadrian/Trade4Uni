@@ -41,7 +41,6 @@
                 <button @click="logout" class="btn btn-info">Logout</button>
 
                 <router-link to="/user-change-password" class="btn btn-info">Change Password</router-link>
-
             </div>
         </div>
     </div>

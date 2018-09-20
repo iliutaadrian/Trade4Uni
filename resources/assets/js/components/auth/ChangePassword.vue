@@ -9,37 +9,43 @@
 
                 <input type="password" v-model="form.password_confirmation" class="form-control mb-4" placeholder="Password confirm">
 
-                <button class="btn btn-info btn-block my-4" type="submit">Change password</button>
+                <button-load :text="'Change password'" :loading="loading"></button-load>
             </form>
         </div>
     </div>
 </template>
 
 <script>
+    import ButtonLoad from '../utility/ButtonLoad.vue';
+
     export default {
-        name: "login",
         data() {
             return {
                 form: {
                     token: '',
                     password: 'bunaziua',
                     password_confirmation: 'bunaziua'
-                }
+                },
+                loading: 0
             };
         },
         methods: {
             authenticate() {
+                this.loading=1;
                 this.form.token = this.$route.query.token;
 
                 axios.post('/api/auth/password/reset', this.$data.form)
                     .then(response =>{
+                        this.loading=0;
                         console.log(response);
                     })
                     .catch(err=>{
                         console.log(err);
                     })
-
             }
+        },
+        components:{
+            ButtonLoad
         }
     }
 </script>
