@@ -4,7 +4,11 @@
             <div class="col-md-6">
                 <p class="h4 mb-4">Profile: {{ currentUser.name }}</p>
 
-                <user-avatar></user-avatar>
+                <div v-if="changeAvatar == 0">
+                    <img :src="currentUser.avatar" width="150">
+                    <button class="btn btn-info" @click="changeAvatar = 1">Change Picture</button>
+                </div>
+                <user-avatar v-else></user-avatar>
 
                 <p class="h6 mb-4">{{ response }}</p>
 
@@ -58,7 +62,8 @@
         data(){
             return {
                 response: '',
-                loading: 0
+                loading: 0,
+                changeAvatar: 0
             }
         },
         methods: {
