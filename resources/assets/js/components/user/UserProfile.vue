@@ -6,9 +6,10 @@
 
                 <div v-if="changeAvatar == 0">
                     <img :src="currentUser.avatar" width="150">
+                    <br>
                     <button class="btn btn-info" @click="changeAvatar = 1">Change Picture</button>
                 </div>
-                <user-avatar v-else></user-avatar>
+                <user-avatar @doneAvatar="changeAvatar = 0" v-else></user-avatar>
 
                 <p class="h6 mb-4">{{ response }}</p>
 
