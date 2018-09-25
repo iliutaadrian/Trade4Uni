@@ -73,6 +73,7 @@ class RegisterController extends Controller
             'idCity' => $data['idCity'],
             'idCollege' => $data['idCollege'],
             'password' => Hash::make($data['password']),
+            'avatar' => '/../../../storage/avatar/avatar-default.png'
         ]);
     }
 }

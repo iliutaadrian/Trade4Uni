@@ -30,6 +30,11 @@ Route::group(['middleware' => 'jwt.auth'], function ($router) {
 
     Route::post('user/update', 'UserController@updateUser');
 
+    Route::post('user/avatar', 'ImageController@uploadAvatar');
+    Route::post('user/avatar/change', 'ImageController@changeAvatar');
+    Route::get('user/pictures/{id}', 'ImageController@getPreviousAvatars');
+    Route::post('user/pictures/delete', 'ImageController@deletePreviousAvatar');
+
     Route::get('customers', 'CustomersController@all');
     Route::get('customers/{id}', 'CustomersController@get');
     Route::post('customers/new', 'CustomersController@new');

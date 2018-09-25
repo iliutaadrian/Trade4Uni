@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->integer('idCity');
             $table->integer('idCollege');
             $table->string('password');
+            $table->string('avatar');
             $table->rememberToken();
             $table->timestamps();
         });
